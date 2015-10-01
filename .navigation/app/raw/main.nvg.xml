@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+  ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+  <locations  
+    class = "java.util.ArrayList">
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.bill.photostreamapp.FeedActivity"/>
+      <point      
+        x = "1588"      
+        y = "1212"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.bill.photostreamapp.SearchActivity"/>
+      <point      
+        x = "3468"      
+        y = "872"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.bill.photostreamapp.MainActivity"/>
+      <point      
+        x = "428"      
+        y = "180"/>
+    </statePointEntry>
+  </locations>
+</navigationModel>

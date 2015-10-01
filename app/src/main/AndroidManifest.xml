@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bill.photostreamapp" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +17,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!--<activity-->
+        <!--android:name=".FeedFragment"-->
+        <!--android:label="@string/title_activity_feed_fragment" >-->
+        <!--</activity>-->
+        <activity
+            android:name=".FeedActivity"
+            android:label="@string/title_activity_feed" >
+        </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search" >
         </activity>
     </application>
 
