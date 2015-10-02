@@ -51,6 +51,10 @@ public class SearchActivityFragment extends Fragment {
     public SearchActivityFragment() {
     }
 
+//    public interface OnDataPass {
+//        public void onDataPass(String data)
+//    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,7 +84,10 @@ public class SearchActivityFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO save image
+                // Add the current imageURL to MainActivity's SavedImages list
+                String URLToSave = imageURLs.get(currentImagePos);
+                ((MainActivity) getActivity()).addToSavedImages(URLToSave);
+                ((MainActivity) getActivity()).updateFeed();
             }
         });
         // prevButton

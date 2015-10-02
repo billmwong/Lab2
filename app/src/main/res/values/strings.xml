@@ -16,4 +16,5 @@
     <string name="nextImage">Next Image</string>
     <string name="save">Save</string>
     <string name="feedTitle">Your Feed</string>
+    <string name="delete">Delete</string>
 </resources>

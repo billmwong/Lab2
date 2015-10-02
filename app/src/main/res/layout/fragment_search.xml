@@ -52,10 +52,10 @@
         android:text="@string/nextImage"
         android:id="@+id/nextButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/webView"
-        android:layout_alignEnd="@+id/webView"
         android:layout_alignTop="@+id/saveButton"
-        android:layout_toEndOf="@+id/saveButton" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/saveButton"/>
 
     <Button
         android:layout_width="wrap_content"

@@ -4,15 +4,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity {
     /**
@@ -31,6 +28,11 @@ public class MainActivity extends FragmentActivity {
      */
     private PagerAdapter mPagerAdapter;
 
+    // The arraylist of urls for the saved images
+    private ArrayList<String> savedImages = new ArrayList<String>();
+
+    private FeedActivityFragment feedActivityFragment = new FeedActivityFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,28 @@ public class MainActivity extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+    }
+
+    public ArrayList<String> getSavedImages() {
+        return savedImages;
+    }
+
+//    public void setSavedImages(ArrayList<String> newList) {
+//        savedImages = newList;
+//    }
+
+    public void removeImage(int position) {
+        savedImages.remove(position);
+        updateFeed();
+    }
+
+    public void addToSavedImages(String newImage) {
+        savedImages.add(newImage);
+        Log.d("NEW IMAGE: ", newImage);
+    }
+
+    public void updateFeed() {
+        feedActivityFragment.updateWebView();
     }
 
     @Override
@@ -69,7 +93,7 @@ public class MainActivity extends FragmentActivity {
             if (position == 0) {
                 return new SearchActivityFragment();
             }
-            return new FeedActivityFragment();
+            return feedActivityFragment;
         }
 
         @Override
