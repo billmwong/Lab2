@@ -31,9 +31,6 @@ public class MainActivity extends FragmentActivity {
      */
     private PagerAdapter mPagerAdapter;
 
-//    private TextView testText;
-//    private Button testButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,17 +40,6 @@ public class MainActivity extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
-
-
-//        testText = (TextView) mPager.findViewById(R.id.testText);
-//
-//        testButton = (Button) mPager.findViewById(R.id.button);
-//        testButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                testText.setText("you are a poop");
-//            }
-//        });
     }
 
     @Override

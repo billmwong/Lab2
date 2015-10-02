@@ -10,23 +10,10 @@ import android.widget.TextView;
 
 public class SearchActivity extends AppCompatActivity {
 
-//    private Button testButton;
-//    private TextView testText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
-//        testText = (TextView) findViewById(R.id.testText);
-//
-//        testButton = (Button) findViewById(R.id.button);
-//        testButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                testText.setText("you are a poop");
-//            }
-//        });
     }
 
 

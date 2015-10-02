@@ -10,4 +10,10 @@
     <string name="title_activity_feed_fragment">FeedFragment</string>
     <string name="title_activity_feed">FeedActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="search">Search</string>
+    <string name="searchHint">Enter Search Term</string>
+    <string name="prevImage">Previous Image</string>
+    <string name="nextImage">Next Image</string>
+    <string name="save">Save</string>
+    <string name="feedTitle">Your Feed</string>
 </resources>
