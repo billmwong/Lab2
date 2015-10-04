@@ -86,7 +86,7 @@ public class SearchActivityFragment extends Fragment {
             public void onClick(View v) {
                 // Add the current imageURL to MainActivity's SavedImages list
                 String URLToSave = imageURLs.get(currentImagePos);
-                ((MainActivity) getActivity()).addToSavedImages(URLToSave);
+                ((MainActivity) getActivity()).addImagetoDb(URLToSave);
                 ((MainActivity) getActivity()).updateFeed();
             }
         });

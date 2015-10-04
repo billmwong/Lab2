@@ -1,5 +1,8 @@
 package com.example.bill.photostreamapp;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -12,24 +15,14 @@ import android.support.v4.app.FragmentManager;
 import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity {
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
+    // Number of screens to slide between
     private static final int NUM_PAGES = 2;
 
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
+    // Screen slide initializers
     private ViewPager mPager;
-
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
     private PagerAdapter mPagerAdapter;
 
-    // The arraylist of urls for the saved images
-    private ArrayList<String> savedImages = new ArrayList<String>();
+    private DatabaseHelper mDbHelper;
 
     private FeedActivityFragment feedActivityFragment = new FeedActivityFragment();
 
@@ -42,28 +35,45 @@ public class MainActivity extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
-    }
 
-    public ArrayList<String> getSavedImages() {
-        return savedImages;
-    }
-
-//    public void setSavedImages(ArrayList<String> newList) {
-//        savedImages = newList;
-//    }
-
-    public void removeImage(int position) {
-        savedImages.remove(position);
-        updateFeed();
-    }
-
-    public void addToSavedImages(String newImage) {
-        savedImages.add(newImage);
-        Log.d("NEW IMAGE: ", newImage);
+        // Database
+        mDbHelper = new DatabaseHelper(this);
     }
 
     public void updateFeed() {
-        feedActivityFragment.updateWebView();
+        feedActivityFragment.updateFromDb(getmDbHelper());
+    }
+
+    public DatabaseHelper getmDbHelper() {
+        return mDbHelper;
+    }
+
+    public void addImagetoDb(String url) {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        ContentValues vals = new ContentValues();
+        vals.put(DatabaseHelper.FeedEntry.COLUMN_NAME_URL, url);
+
+        Cursor cursor = db.rawQuery("Select * from " + DatabaseHelper.FeedEntry.TABLE_NAME +
+                " where " + DatabaseHelper.FeedEntry.COLUMN_NAME_URL + " = \"" + url + "\"", null);
+        if (cursor == null || cursor.getCount() <= 0) {
+            // URL not already in database
+            long newRowId;
+            newRowId = db.insert(DatabaseHelper.FeedEntry.TABLE_NAME, null, vals);
+            Log.d("Added", url);
+        } else {
+            Log.d("Already in database", url);
+        }
+        cursor.close();
+        db.close();
+    }
+
+    public void deleteImageFromDb(String url) {
+        Log.d("Deleted", url);
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        db.delete(DatabaseHelper.FeedEntry.TABLE_NAME,
+                DatabaseHelper.FeedEntry.COLUMN_NAME_URL + " = ?", new String[]{url});
+        db.close();
+        updateFeed();
     }
 
     @Override
